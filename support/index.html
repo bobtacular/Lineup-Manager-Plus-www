@@ -1,286 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Support | Lineup Manager+</title>
-    <meta name="description" content="Get help with Lineup Manager+ — the softball and baseball lineup management app for iPad and iPhone.">
-    <link rel="icon" type="image/png" href="/assets/icon/app-icon.png">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Support | Lineup Manager+</title>
+<meta name="description" content="Get help with Lineup Manager+ — the softball and baseball lineup management app for iPad and iPhone.">
+<link rel="icon" type="image/png" href="/assets/icon/app-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;800&display=swap">
+<style>
+:root{
+  --bg:#f3f2f2; --surface:#eae9e9; --ink:#201e1d; --accent:#ec3013;
+  --accent-600:#dd2b0f; --accent-700:#ae1800;
+  --n600:#7d7979; --n700:#605d5d;
+  --rule:rgba(32,30,29,0.4);
+  --gutter:clamp(20px,4vw,64px);
+  --font:"Archivo",system-ui,-apple-system,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:var(--accent);text-decoration:none;text-underline-offset:3px}
+a:hover{color:var(--accent-700);text-decoration:underline}
+:focus{outline:none}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+::selection{background:rgba(236,48,19,0.3)}
+h1,h2,h3{font-weight:800;line-height:1.08;letter-spacing:-0.03em;text-wrap:pretty}
 
-        :root {
-            --bg-primary: #0a0e1a;
-            --bg-secondary: #111827;
-            --bg-card: #1a2236;
-            --text-primary: #f0f4ff;
-            --text-secondary: #94a3b8;
-            --accent: #3b82f6;
-        }
+.wrap{max-width:1360px;margin:0 auto;padding-inline:var(--gutter)}
+.kick{font-size:12px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent)}
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.7;
-        }
+header{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:2px solid var(--rule)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px;gap:24px}
+.brand{display:flex;align-items:center;gap:12px;color:var(--ink);font-weight:800;font-size:17px;letter-spacing:-0.02em}
+.brand:hover{color:var(--ink);text-decoration:none}
+.brand img{width:34px;height:34px}
+.navlinks{display:flex;gap:clamp(16px,2.5vw,34px);align-items:center}
+.navlinks a{color:var(--n700);font-size:14px;font-weight:600}
+.navlinks a:hover{color:var(--accent);text-decoration:none}
 
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 100;
-            background: rgba(10, 14, 26, 0.85);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-            padding: 0 24px;
-        }
+.page-head{padding-block:clamp(48px,6vw,96px) clamp(28px,3vw,44px);border-bottom:2px solid var(--rule)}
+.page-head h1{font-size:clamp(38px,6vw,86px);margin-top:14px}
+.page-head .sub{font-size:clamp(17px,1.5vw,21px);font-weight:500;color:var(--n700);margin-top:20px;max-width:44ch}
 
-        .nav-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 64px;
-        }
+/* contact band */
+.contact{border-bottom:2px solid var(--rule)}
+.contact .inner{display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;padding-block:clamp(28px,3.5vw,52px)}
+.contact h2{font-size:clamp(22px,2.4vw,34px)}
+.contact p{color:var(--n700);font-weight:500;margin-top:12px;max-width:52ch}
+.btn{display:inline-flex;align-items:center;font-family:var(--font);font-weight:800;font-size:15px;line-height:1.2;
+  padding:14px 20px;border:2px solid transparent;border-radius:0;background:var(--accent);color:var(--bg);white-space:nowrap}
+.btn:hover{background:var(--accent-600);color:var(--bg);text-decoration:none}
+.btn:active{background:var(--accent-700)}
 
-        .nav-brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-            color: var(--text-primary);
-            font-weight: 700;
-            font-size: 1.1rem;
-        }
+.faq-head{padding-block:clamp(44px,5vw,80px) clamp(20px,2.4vw,36px)}
+.faq-head h2{font-size:clamp(26px,3.4vw,52px);margin-top:14px}
 
-        .nav-brand img {
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
-        }
+.faq{display:grid;grid-template-columns:repeat(2,1fr);border-top:2px solid var(--rule);border-left:2px solid var(--rule)}
+.faq-item{padding:clamp(22px,2.4vw,34px);border-right:2px solid var(--rule);border-bottom:2px solid var(--rule)}
+.faq-item h3{font-size:19px;margin-bottom:12px}
+.faq-item p{color:var(--n700);font-weight:500;font-size:15px}
 
-        .nav-links {
-            display: flex;
-            gap: 32px;
-            align-items: center;
-        }
+.spacer{height:clamp(48px,6vw,96px)}
 
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
+footer{border-top:2px solid var(--rule)}
+.foot{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;padding-block:32px}
+.foot p{font-size:13px;color:var(--n600);font-weight:500}
+.footlinks{display:flex;gap:24px}
+.footlinks a{font-size:13px;font-weight:600;color:var(--n700)}
+.footlinks a:hover{color:var(--accent);text-decoration:none}
 
-        .nav-links a:hover {
-            color: var(--text-primary);
-        }
-
-        .content {
-            max-width: 720px;
-            margin: 0 auto;
-            padding: 120px 24px 80px;
-        }
-
-        .content h1 {
-            font-size: 2.2rem;
-            font-weight: 800;
-            margin-bottom: 8px;
-        }
-
-        .subtitle {
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-            margin-bottom: 40px;
-        }
-
-        .content h2 {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-top: 40px;
-            margin-bottom: 12px;
-            color: var(--text-primary);
-        }
-
-        .content p {
-            color: var(--text-secondary);
-            margin-bottom: 16px;
-            font-size: 1rem;
-        }
-
-        .content a {
-            color: var(--accent);
-            text-decoration: none;
-        }
-
-        .content a:hover {
-            text-decoration: underline;
-        }
-
-        .contact-card {
-            background: var(--bg-card);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 16px;
-            padding: 28px;
-            margin: 24px 0;
-        }
-
-        .contact-card h3 {
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .contact-card p {
-            margin-bottom: 0;
-        }
-
-        .faq-item {
-            margin-bottom: 24px;
-        }
-
-        .faq-item h3 {
-            font-size: 1.05rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: var(--text-primary);
-        }
-
-        .faq-item p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
-
-        footer {
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
-            padding: 40px 24px;
-            text-align: center;
-        }
-
-        .footer-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 16px;
-        }
-
-        .footer-inner p {
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 24px;
-        }
-
-        .footer-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.85rem;
-            transition: color 0.2s;
-        }
-
-        .footer-links a:hover {
-            color: var(--text-primary);
-        }
-
-        @media (max-width: 768px) {
-            .footer-inner {
-                flex-direction: column;
-                text-align: center;
-            }
-        }
-    </style>
+@media (max-width:860px){
+  .contact .inner{grid-template-columns:1fr}
+  .faq{grid-template-columns:1fr}
+}
+</style>
 </head>
 <body>
 
-<nav>
-    <div class="nav-inner">
-        <a href="/" class="nav-brand">
-            <img src="/assets/icon/app-icon.png" alt="Lineup Manager+ icon">
-            Lineup Manager+
-        </a>
-        <div class="nav-links">
-            <a href="/">Home</a>
-            <a href="/privacy">Privacy</a>
-            <a href="/support">Support</a>
-        </div>
-    </div>
-</nav>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="/"><img src="/assets/icon/app-icon.png" alt="Lineup Manager+ icon">Lineup Manager+</a>
+    <nav class="navlinks">
+      <a href="/">Home</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/support">Support</a>
+    </nav>
+  </div>
+</header>
 
-<main class="content">
+<div class="page-head">
+  <div class="wrap">
+    <span class="kick">Help</span>
     <h1>Support</h1>
-    <p class="subtitle">Need help with Lineup Manager+? We're here for you.</p>
+    <p class="sub">Need help with Lineup Manager+? We're here for you.</p>
+  </div>
+</div>
 
-    <div class="contact-card">
-        <h3>Contact Us</h3>
-        <p>For questions, bug reports, or feature requests, email us at <a href="mailto:support@lineupmanager.plus">support@lineupmanager.plus</a></p>
+<section class="contact">
+  <div class="wrap inner">
+    <div>
+      <h2>Contact Us</h2>
+      <p>For questions, bug reports, or feature requests, email us at <a href="mailto:support@lineupmanager.plus">support@lineupmanager.plus</a></p>
     </div>
+    <a class="btn" href="mailto:support@lineupmanager.plus">Email support</a>
+  </div>
+</section>
 
+<main>
+  <div class="wrap faq-head">
+    <span class="kick">Common questions</span>
     <h2>Frequently Asked Questions</h2>
+  </div>
 
-    <div class="faq-item">
+  <div class="wrap">
+    <div class="faq">
+      <div class="faq-item">
         <h3>How do I create a lineup?</h3>
         <p>Go to the Games tab, select or create a game, then tap on the lineup grid. You can assign each player to a position for every inning. Drag players to reorder the batting lineup.</p>
-    </div>
-
-    <div class="faq-item">
+      </div>
+      <div class="faq-item">
         <h3>Can I manage multiple teams?</h3>
         <p>Yes! Go to Settings to add and switch between teams. Each team has its own roster, games, seasons, and settings. Players can be shared across teams.</p>
-    </div>
-
-    <div class="faq-item">
+      </div>
+      <div class="faq-item">
         <h3>How does iCloud sync work?</h3>
         <p>If iCloud is enabled on your device, Lineup Manager+ automatically syncs your data across all your Apple devices. Make sure you're signed into the same Apple ID on each device.</p>
-    </div>
-
-    <div class="faq-item">
+      </div>
+      <div class="faq-item">
         <h3>How do I set up walkup music?</h3>
         <p>Open a player's profile and scroll to the Walkup Songs section. Tap "Add" to search and select songs from Apple Music. You can also set team-level songs in the team edit screen. An Apple Music subscription is required for playback.</p>
-    </div>
-
-    <div class="faq-item">
+      </div>
+      <div class="faq-item">
         <h3>How do I sync games to my calendar?</h3>
         <p>Go to Settings and enable Calendar Sync. You can manage sync per team in each team's edit settings. Games will appear in your device's calendar app.</p>
-    </div>
-
-    <div class="faq-item">
+      </div>
+      <div class="faq-item">
         <h3>Is my data private?</h3>
         <p>Yes. All data is stored locally on your device and in your personal iCloud account. We do not collect, store, or have access to any of your data. See our <a href="/privacy">Privacy Policy</a> for details.</p>
-    </div>
-
-    <div class="faq-item">
+      </div>
+      <div class="faq-item">
         <h3>What devices are supported?</h3>
         <p>Lineup Manager+ works on iPhone and iPad running iOS/iPadOS 18.0 or later.</p>
-    </div>
-
-    <div class="faq-item">
+      </div>
+      <div class="faq-item">
         <h3>I found a bug. How do I report it?</h3>
         <p>Please email <a href="mailto:support@lineupmanager.plus">support@lineupmanager.plus</a> with a description of the issue, the device you're using, and any screenshots if possible. We'll get back to you as soon as we can.</p>
+      </div>
     </div>
+  </div>
+
+  <div class="spacer"></div>
 </main>
 
 <footer>
-    <div class="footer-inner">
-        <p>&copy; 2025 Bob Morse. All rights reserved.</p>
-        <div class="footer-links">
-            <a href="/privacy">Privacy Policy</a>
-            <a href="/support">Support</a>
-            <a href="mailto:support@lineupmanager.plus">Contact</a>
-        </div>
+  <div class="wrap foot">
+    <p>&copy; 2026 Bob Morse. All rights reserved.</p>
+    <div class="footlinks">
+      <a href="/privacy">Privacy Policy</a>
+      <a href="/support">Support</a>
+      <a href="mailto:support@lineupmanager.plus">Contact</a>
     </div>
+  </div>
 </footer>
 
 </body>

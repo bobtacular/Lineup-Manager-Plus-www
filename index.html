@@ -1,566 +1,316 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lineup Manager+ | Softball &amp; Baseball Lineup Manager for iPad &amp; Mac</title>
-    <meta name="description" content="The ultimate lineup management app for softball and baseball coaches. Build lineups, track games, manage rosters, and play walkup music — all from your iPad or Mac.">
-    <meta name="keywords" content="softball, baseball, lineup manager, coaching app, iPadOS, macOS, iPad, Mac, roster management, walkup music">
-    <link rel="icon" type="image/png" href="assets/icon/app-icon.png">
-    <meta property="og:title" content="Lineup Manager+">
-    <meta property="og:description" content="The ultimate lineup management app for softball and baseball coaches.">
-    <meta property="og:image" content="assets/icon/app-icon.png">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://lineupmanager.plus">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lineup Manager+ | Softball &amp; Baseball Lineup Manager for iPhone &amp; iPad</title>
+<meta name="description" content="The ultimate lineup management app for softball and baseball coaches. Build lineups, track games, manage rosters, and play walkup music — all from your iPhone or iPad.">
+<meta name="keywords" content="softball, baseball, lineup manager, coaching app, iPadOS, iOS, iPad, iPhone, roster management, walkup music">
+<link rel="icon" type="image/png" href="assets/icon/app-icon.png">
+<meta property="og:title" content="Lineup Manager+">
+<meta property="og:description" content="The ultimate lineup management app for softball and baseball coaches.">
+<meta property="og:image" content="assets/icon/app-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://lineupmanager.plus">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;800&display=swap">
+<style>
+:root{
+  --bg:#f3f2f2; --surface:#eae9e9; --ink:#201e1d; --accent:#ec3013;
+  --accent-600:#dd2b0f; --accent-700:#ae1800;
+  --n300:#d7d3d3; --n600:#7d7979; --n700:#605d5d;
+  --rule:rgba(32,30,29,0.4);
+  --gutter:clamp(20px,4vw,64px);
+  --font:"Archivo",system-ui,-apple-system,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:var(--accent);text-decoration:none;text-underline-offset:3px}
+a:hover{color:var(--accent-700);text-decoration:underline}
+:focus{outline:none}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+::selection{background:rgba(236,48,19,0.3)}
+h1,h2,h3,h4{font-weight:800;line-height:1.06;letter-spacing:-0.03em;text-wrap:pretty}
 
-        :root {
-            --bg-primary: #0a0e1a;
-            --bg-secondary: #111827;
-            --bg-card: #1a2236;
-            --text-primary: #f0f4ff;
-            --text-secondary: #94a3b8;
-            --accent: #3b82f6;
-            --accent-glow: rgba(59, 130, 246, 0.3);
-            --green: #22c55e;
-        }
+.wrap{max-width:1360px;margin:0 auto;padding-inline:var(--gutter)}
+.kick{font-size:12px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent)}
+.kick-ink{color:var(--n600)}
+.rule{height:2px;background:var(--rule);border:0}
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+/* nav */
+header{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:2px solid var(--rule)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px;gap:24px}
+.brand{display:flex;align-items:center;gap:12px;color:var(--ink);font-weight:800;font-size:17px;letter-spacing:-0.02em}
+.brand:hover{color:var(--ink);text-decoration:none}
+.brand img{width:34px;height:34px}
+.navlinks{display:flex;gap:clamp(16px,2.5vw,34px);align-items:center}
+.navlinks a{color:var(--n700);font-size:14px;font-weight:600}
+.navlinks a:hover{color:var(--accent);text-decoration:none}
 
-        /* Nav */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 100;
-            background: rgba(10, 14, 26, 0.85);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-            padding: 0 24px;
-        }
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--font);font-weight:800;font-size:15px;line-height:1.2;
+  padding:14px 20px;border:2px solid transparent;border-radius:0;cursor:pointer;text-decoration:none}
+.btn:hover{text-decoration:none}
+.btn-primary{background:var(--accent);color:var(--bg)}
+.btn-primary:hover{background:var(--accent-600);color:var(--bg)}
+.btn-primary:active{background:var(--accent-700)}
+.btn-secondary{border-color:var(--rule);color:var(--ink)}
+.btn-secondary:hover{background:rgba(32,30,29,0.07);color:var(--ink)}
 
-        .nav-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 64px;
-        }
+/* hero */
+.hero{display:grid;grid-template-columns:1.05fr 0.95fr;gap:clamp(24px,4vw,64px);align-items:start;padding-top:clamp(40px,5vw,80px)}
+.hero h1{font-size:clamp(44px,7.2vw,104px)}
+.hero .lede{font-size:clamp(17px,1.5vw,22px);color:var(--n700);max-width:34ch;margin-top:24px;font-weight:500}
+.hero .cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px;align-items:center}
+.hero-col{display:flex;flex-direction:column;padding-bottom:clamp(40px,6vw,88px)}
+.hero-shot{position:relative;align-self:end}
+.hero-shot img{width:100%;max-width:390px;margin-inline:auto;filter:drop-shadow(0 18px 44px rgba(45,43,43,0.18))}
 
-        .nav-brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-            color: var(--text-primary);
-            font-weight: 700;
-            font-size: 1.1rem;
-        }
+/* spec strip */
+.specs{display:grid;grid-template-columns:repeat(4,1fr);border-top:2px solid var(--rule);border-bottom:2px solid var(--rule)}
+.spec{padding:24px 22px;border-left:2px solid var(--rule)}
+.spec:first-child{border-left:0}
+.spec dt{font-size:12px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:var(--n600);margin-bottom:10px}
+.spec dd{font-size:clamp(18px,1.6vw,24px);font-weight:800;letter-spacing:-0.02em}
 
-        .nav-brand img {
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
-        }
+/* feature rows */
+.section-head{padding-block:clamp(56px,7vw,104px) clamp(28px,3vw,44px)}
+.section-head h2{font-size:clamp(30px,4vw,58px);max-width:22ch;margin-top:16px}
+.section-head p{color:var(--n700);font-size:clamp(16px,1.3vw,19px);max-width:56ch;margin-top:18px;font-weight:500}
 
-        .nav-links {
-            display: flex;
-            gap: 32px;
-            align-items: center;
-        }
+.row{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,72px);align-items:center;
+  border-top:2px solid var(--rule);padding-block:clamp(44px,5.5vw,88px)}
+.row-text h3{font-size:clamp(26px,3vw,42px)}
+.row-text p{color:var(--n700);font-size:clamp(15px,1.2vw,18px);margin-top:16px;max-width:44ch;font-weight:500}
+.row-text .kick{margin-bottom:14px;display:block}
+.row-text ul{list-style:none;margin-top:26px;display:flex;flex-direction:column}
+.row-text li{font-size:15px;font-weight:600;padding:11px 0;border-top:2px solid rgba(32,30,29,0.16)}
+.row-shot img{width:100%;filter:drop-shadow(0 16px 40px rgba(45,43,43,0.16))}
+.shot-phone img{max-width:330px;margin-inline:auto}
+.row.flip .row-text{order:2}
+.row.flip .row-shot{order:1}
+.shot-pad{padding:0 clamp(0px,4vw,64px)}
 
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
+/* feature grid */
+.fgrid{display:grid;grid-template-columns:repeat(3,1fr);border-top:2px solid var(--rule);border-left:2px solid var(--rule)}
+.fcell{padding:clamp(22px,2.4vw,34px);border-right:2px solid var(--rule);border-bottom:2px solid var(--rule)}
+.fcell h4{font-size:19px;margin-bottom:10px}
+.fcell p{color:var(--n700);font-size:15px;font-weight:500}
+.fcell .num{font-size:12px;font-weight:600;letter-spacing:0.16em;color:var(--accent);display:block;margin-bottom:16px}
 
-        .nav-links a:hover {
-            color: var(--text-primary);
-        }
+/* poster CTA */
+.poster{background:var(--accent);color:var(--bg);margin-top:clamp(64px,8vw,120px)}
+.poster .inner{padding-block:clamp(56px,8vw,120px);display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center}
+.poster-icon{width:clamp(120px,16vw,240px);height:auto;box-shadow:0 20px 50px rgba(45,43,43,0.3)}
+@media (max-width:900px){.poster .inner{grid-template-columns:1fr}.poster-icon{display:none}}
+.poster h2{font-size:clamp(34px,6vw,86px);max-width:20ch}
+.poster p{font-size:clamp(16px,1.5vw,21px);margin-top:20px;max-width:48ch;font-weight:500;color:rgba(243,242,242,0.85)}
+.poster .btn-invert{background:var(--bg);color:var(--ink);margin-top:36px}
+.poster .btn-invert:hover{background:#fff;color:var(--ink)}
 
-        /* Hero */
-        .hero {
-            padding: 140px 24px 80px;
-            text-align: center;
-            position: relative;
-        }
+footer{border-top:2px solid var(--rule)}
+.foot{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;padding-block:32px}
+.foot p{font-size:13px;color:var(--n600);font-weight:500}
+.footlinks{display:flex;gap:24px}
+.footlinks a{font-size:13px;font-weight:600;color:var(--n700)}
+.footlinks a:hover{color:var(--accent);text-decoration:none}
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
-            opacity: 0.4;
-            pointer-events: none;
-        }
-
-        .hero-icon {
-            width: 100px;
-            height: 100px;
-            border-radius: 22px;
-            margin-bottom: 24px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-        }
-
-        .hero h1 {
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            font-weight: 800;
-            letter-spacing: -0.02em;
-            margin-bottom: 16px;
-            background: linear-gradient(135deg, #ffffff, #94a3b8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero p {
-            font-size: clamp(1.1rem, 2.5vw, 1.35rem);
-            color: var(--text-secondary);
-            max-width: 640px;
-            margin: 0 auto 40px;
-            line-height: 1.7;
-        }
-
-        .badge-row {
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 16px;
-        }
-
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: var(--bg-card);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 8px 16px;
-            border-radius: 100px;
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            font-weight: 500;
-        }
-
-        .badge svg {
-            width: 16px;
-            height: 16px;
-        }
-
-        .app-store-btn {
-            display: inline-block;
-            margin-top: 24px;
-            transition: transform 0.2s, opacity 0.2s;
-        }
-
-        .app-store-btn:hover {
-            transform: scale(1.05);
-            opacity: 0.9;
-        }
-
-        .app-store-btn img {
-            height: 54px;
-        }
-
-        /* Screenshot carousel */
-        .screenshots-section {
-            padding: 40px 0 80px;
-            overflow: hidden;
-        }
-
-        .screenshots-section h2 {
-            text-align: center;
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 40px;
-        }
-
-        .carousel-wrapper {
-            position: relative;
-            max-width: 100%;
-        }
-
-        .carousel {
-            display: flex;
-            gap: 24px;
-            padding: 0 24px;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
-            scroll-behavior: smooth;
-        }
-
-        .carousel::-webkit-scrollbar {
-            display: none;
-        }
-
-        .carousel-item {
-            flex: 0 0 auto;
-            scroll-snap-align: center;
-            width: min(340px, 80vw);
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
-            transition: transform 0.3s;
-        }
-
-        .carousel-item:hover {
-            transform: translateY(-4px);
-        }
-
-        .carousel-item img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .carousel-nav {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin-top: 32px;
-        }
-
-        .carousel-btn {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background: var(--bg-card);
-            color: var(--text-primary);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.2s, border-color 0.2s;
-        }
-
-        .carousel-btn:hover {
-            background: var(--bg-secondary);
-            border-color: rgba(255, 255, 255, 0.2);
-        }
-
-        .carousel-btn svg {
-            width: 20px;
-            height: 20px;
-        }
-
-        /* Features */
-        .features {
-            padding: 80px 24px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .features h2 {
-            text-align: center;
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-
-        .features > p {
-            text-align: center;
-            color: var(--text-secondary);
-            margin-bottom: 48px;
-            font-size: 1.1rem;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
-        .feature-card {
-            background: var(--bg-card);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 16px;
-            padding: 28px;
-            transition: border-color 0.3s, transform 0.3s;
-        }
-
-        .feature-card:hover {
-            border-color: rgba(59, 130, 246, 0.3);
-            transform: translateY(-2px);
-        }
-
-        .feature-icon {
-            font-size: 1.6rem;
-            margin-bottom: 12px;
-            display: block;
-        }
-
-        .feature-card h3 {
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .feature-card p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        /* CTA */
-        .cta {
-            text-align: center;
-            padding: 80px 24px 100px;
-        }
-
-        .cta h2 {
-            font-size: 2rem;
-            font-weight: 800;
-            margin-bottom: 16px;
-        }
-
-        .cta p {
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-            margin-bottom: 32px;
-        }
-
-        /* Footer */
-        footer {
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
-            padding: 40px 24px;
-            text-align: center;
-        }
-
-        .footer-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 16px;
-        }
-
-        .footer-inner p {
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 24px;
-        }
-
-        .footer-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.85rem;
-            transition: color 0.2s;
-        }
-
-        .footer-links a:hover {
-            color: var(--text-primary);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links {
-                gap: 20px;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-inner {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .hero {
-                padding: 120px 24px 60px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .nav-links a.hide-mobile {
-                display: none;
-            }
-        }
-    </style>
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr;align-items:start}
+  .hero-col{padding-bottom:8px}
+  .hero-shot{max-width:400px;margin-bottom:40px}
+  .specs{grid-template-columns:repeat(2,1fr)}
+  .spec:nth-child(3){border-left:0}
+  .spec:nth-child(-n+2){border-bottom:2px solid var(--rule)}
+  .row{grid-template-columns:1fr;gap:32px}
+  .row.flip .row-text{order:1}
+  .row.flip .row-shot{order:2}
+  .fgrid{grid-template-columns:1fr}
+  .shot-pad{padding:0}
+}
+@media (max-width:560px){
+  .navlinks a.hide-sm{display:none}
+}
+</style>
 </head>
 <body>
 
-<nav>
-    <div class="nav-inner">
-        <a href="/" class="nav-brand">
-            <img src="assets/icon/app-icon.png" alt="Lineup Manager+ icon">
-            Lineup Manager+
-        </a>
-        <div class="nav-links">
-            <a href="#features">Features</a>
-            <a href="#screenshots" class="hide-mobile">Screenshots</a>
-            <a href="/privacy">Privacy</a>
-            <a href="/support">Support</a>
-        </div>
-    </div>
-</nav>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="/"><img src="assets/icon/app-icon.png" alt="Lineup Manager+ icon">Lineup Manager+</a>
+    <nav class="navlinks">
+      <a href="#lineups">Features</a>
+      <a href="#everything" class="hide-sm">Everything</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/support">Support</a>
+    </nav>
+  </div>
+</header>
 
-<section class="hero">
-    <img src="assets/icon/app-icon.png" alt="Lineup Manager+ App Icon" class="hero-icon">
-    <h1>Lineup Manager+</h1>
-    <p>The easiest way to manage your softball or baseball team. Build lineups inning by inning, track every game, manage your roster, and play walkup music &mdash; all from your iPad or Mac.</p>
-    <div class="badge-row">
-        <span class="badge">
-            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25h6M10 20h4M3 5a2 2 0 012-2h14a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"/></svg>
-            iPad &amp; Mac
-        </span>
-        <span class="badge">
-            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2z"/></svg>
-            Walkup Music
-        </span>
-        <span class="badge">
-            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>
-            iCloud Sync
-        </span>
+<main>
+
+<section class="wrap hero">
+  <div class="hero-col">
+    <span class="kick">Softball &amp; baseball · iPhone and iPad</span>
+    <h1>Set your lineup in seconds.</h1>
+    <p class="lede">Build lineups inning by inning, track every game, manage your roster, and play walkup music — all from your iPhone or iPad.</p>
+    <div class="cta">
+      <a class="btn btn-primary" href="https://apps.apple.com/us/app/lineup-manager/id6756772113">Download on the App Store</a>
+      <a class="btn btn-secondary" href="#lineups">See how it works</a>
     </div>
-    <a href="https://apps.apple.com/us/app/lineup-manager/id6756772113" class="app-store-btn" aria-label="Download on the App Store">
-        <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store">
-    </a>
+  </div>
+  <div class="hero-shot"><img src="assets/shots/phone-lineup.png" alt="Lineup Manager+ lineup screen with score, innings and walkup music"></div>
 </section>
 
-<section class="screenshots-section" id="screenshots">
-    <h2>See It in Action</h2>
-    <div class="carousel-wrapper">
-        <div class="carousel" id="carousel">
-            <div class="carousel-item"><img src="assets/screenshots/1.png" alt="Build your lineup - assign positions inning by inning" loading="lazy"></div>
-            <div class="carousel-item"><img src="assets/screenshots/2.png" alt="Drag, drop and customize your lineup" loading="lazy"></div>
-            <div class="carousel-item"><img src="assets/screenshots/4.png" alt="Track every game with full season schedule" loading="lazy"></div>
-            <div class="carousel-item"><img src="assets/screenshots/5.png" alt="Your team roster with photos, numbers and nicknames" loading="lazy"></div>
-            <div class="carousel-item"><img src="assets/screenshots/3.png" alt="Player profiles with walkup songs and positions" loading="lazy"></div>
-            <div class="carousel-item"><img src="assets/screenshots/6.png" alt="Scout your opponents with matchups, records and history" loading="lazy"></div>
-            <div class="carousel-item"><img src="assets/screenshots/7.png" alt="Manage multiple teams all in one place" loading="lazy"></div>
-            <div class="carousel-item"><img src="assets/screenshots/8.png" alt="Team walk-up music - set custom songs for every team" loading="lazy"></div>
-            <div class="carousel-item"><img src="assets/screenshots/9.png" alt="Quick game mode - track score and play walk-up music instantly" loading="lazy"></div>
-        </div>
-        <div class="carousel-nav">
-            <button class="carousel-btn" id="prevBtn" aria-label="Previous screenshot">
-                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
-            </button>
-            <button class="carousel-btn" id="nextBtn" aria-label="Next screenshot">
-                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-            </button>
-        </div>
-    </div>
+<div class="wrap">
+  <dl class="specs">
+    <div class="spec"><dt>Platforms</dt><dd>iPhone &amp; iPad</dd></div>
+    <div class="spec"><dt>Sync</dt><dd>iCloud</dd></div>
+    <div class="spec"><dt>Music</dt><dd>Apple Music</dd></div>
+    <div class="spec"><dt>Positions</dt><dd>9 or 10 fielders</dd></div>
+  </dl>
+</div>
+
+<section class="wrap section-head" id="lineups">
+  <span class="kick">What it does</span>
+  <h2>Everything you need on game day.</h2>
+  <p>Built for coaches and team managers who want to spend less time on logistics and more time on the field.</p>
 </section>
 
-<section class="features" id="features">
-    <h2>Everything You Need on Game Day</h2>
-    <p>Built for coaches and team managers who want to spend less time on logistics and more time on the field.</p>
-    <div class="features-grid">
-        <div class="feature-card">
-            <span class="feature-icon">&#9918;</span>
-            <h3>Inning-by-Inning Lineups</h3>
-            <p>Assign every player to a position for each inning. Drag and drop to rearrange your batting order on the fly.</p>
-        </div>
-        <div class="feature-card">
-            <span class="feature-icon">&#128203;</span>
-            <h3>Game Tracking</h3>
-            <p>Create games with opponent, date, location, and score. View your full schedule organized by season.</p>
-        </div>
-        <div class="feature-card">
-            <span class="feature-icon">&#128101;</span>
-            <h3>Roster Management</h3>
-            <p>Player profiles with photos, numbers, nicknames, preferred positions, and contact info. Players can be shared across teams.</p>
-        </div>
-        <div class="feature-card">
-            <span class="feature-icon">&#127925;</span>
-            <h3>Walkup Music</h3>
-            <p>Set walkup songs for each player. Play them live during games with the built-in music player and Apple Music integration.</p>
-        </div>
-        <div class="feature-card">
-            <span class="feature-icon">&#127942;</span>
-            <h3>Opponent Scouting</h3>
-            <p>Track head-to-head records and history against every opponent. See your win/loss breakdown at a glance.</p>
-        </div>
-        <div class="feature-card">
-            <span class="feature-icon">&#128197;</span>
-            <h3>Season &amp; Calendar Sync</h3>
-            <p>Organize games by season and sync your schedule to your device calendar. Never miss a game.</p>
-        </div>
-        <div class="feature-card">
-            <span class="feature-icon">&#127758;</span>
-            <h3>Multiple Teams</h3>
-            <p>Manage multiple teams from one app. Each team has its own roster, games, seasons, and settings.</p>
-        </div>
-        <div class="feature-card">
-            <span class="feature-icon">&#9729;&#65039;</span>
-            <h3>iCloud Sync</h3>
-            <p>Your data syncs seamlessly across all your devices via iCloud. Your lineup is always up to date.</p>
-        </div>
-        <div class="feature-card">
-            <span class="feature-icon">&#129358;</span>
-            <h3>Baseball &amp; Softball Ready</h3>
-            <p>Built for both baseball and softball with support for a customizable 10th fielder position, so your lineup fits your league's rules.</p>
-        </div>
+<div class="wrap">
+
+  <section class="row">
+    <div class="row-text">
+      <span class="kick">01 / Lineups</span>
+      <h3>Inning-by-inning lineups.</h3>
+      <p>Assign every player to a position for each inning. Drag and drop to rearrange your batting order on the fly.</p>
+      <ul>
+        <li>Full grid view for all innings at once</li>
+        <li>Position fill and one-tap swaps</li>
+        <li>Auto-saved as you go</li>
+      </ul>
     </div>
+    <div class="row-shot shot-tablet shot-pad"><img src="assets/shots/ipad-grid.png" alt="Full lineup grid on iPad showing positions across every inning"></div>
+  </section>
+
+  <section class="row flip">
+    <div class="row-text">
+      <span class="kick">02 / Games</span>
+      <h3>Game tracking.</h3>
+      <p>Create games with opponent, date, location, and score. View your full schedule organized by season.</p>
+      <ul>
+        <li>Scores and win / loss / tie records</li>
+        <li>Field locations with map search</li>
+        <li>Attendance per game</li>
+      </ul>
+    </div>
+    <div class="row-shot shot-tablet shot-pad"><img src="assets/shots/ipad-season.png" alt="Season schedule on iPad with scores and records"></div>
+  </section>
+
+  <section class="row">
+    <div class="row-text">
+      <span class="kick">03 / Walkup music</span>
+      <h3>Walkup music.</h3>
+      <p>Set walkup songs for each player. Play them live during games with the built-in music player and Apple Music integration.</p>
+      <ul>
+        <li>Multiple songs per player</li>
+        <li>Team-wide walkup tracks</li>
+        <li>Optional playlist sync</li>
+      </ul>
+    </div>
+    <div class="row-shot shot-phone"><img src="assets/shots/phone-walkup.png" alt="Player profile with walkup songs and preferred positions"></div>
+  </section>
+
+  <section class="row flip">
+    <div class="row-text">
+      <span class="kick">04 / Roster</span>
+      <h3>Roster management.</h3>
+      <p>Player profiles with photos, numbers, nicknames, preferred positions, and contact info. Players can be shared across teams.</p>
+      <ul>
+        <li>Universal players across every team</li>
+        <li>Photos, numbers and nicknames</li>
+        <li>Email and message straight from the list</li>
+      </ul>
+    </div>
+    <div class="row-shot shot-phone"><img src="assets/shots/phone-roster.png" alt="Team roster list with player photos and numbers"></div>
+  </section>
+
+  <section class="row">
+    <div class="row-text">
+      <span class="kick">05 / Opponents</span>
+      <h3>Opponent scouting.</h3>
+      <p>Track head-to-head records and history against every opponent. See your win/loss breakdown at a glance.</p>
+      <ul>
+        <li>Head-to-head records</li>
+        <li>Opponent logos and colors</li>
+        <li>Game history per matchup</li>
+      </ul>
+    </div>
+    <div class="row-shot shot-phone"><img src="assets/shots/phone-opponents.png" alt="Opponents list with head-to-head records"></div>
+  </section>
+
+  <section class="row flip">
+    <div class="row-text">
+      <span class="kick">06 / Your league's rules</span>
+      <h3>Baseball &amp; softball ready.</h3>
+      <p>Built for both baseball and softball with support for a customizable 10th fielder position, so your lineup fits your league's rules.</p>
+      <ul>
+        <li>Rename any position label</li>
+        <li>Optional 10th position (Rover)</li>
+        <li>Variable inning counts</li>
+      </ul>
+    </div>
+    <div class="row-shot shot-phone"><img src="assets/shots/phone-positions.png" alt="Editable position labels and the 10th fielder toggle"></div>
+  </section>
+
+</div>
+
+<section class="wrap section-head" id="everything">
+  <span class="kick">The full list</span>
+  <h2>Nine things it handles for you.</h2>
 </section>
 
-<section class="cta">
-    <h2>Ready to Level Up Your Game Day?</h2>
-    <p>Download Lineup Manager+ and take the field with confidence.</p>
-    <a href="https://apps.apple.com/us/app/lineup-manager/id6756772113" class="app-store-btn" aria-label="Download on the App Store">
-        <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store">
-    </a>
+<div class="wrap">
+  <div class="fgrid">
+    <div class="fcell"><span class="num">01</span><h4>Inning-by-Inning Lineups</h4><p>Assign every player to a position for each inning. Drag and drop to rearrange your batting order on the fly.</p></div>
+    <div class="fcell"><span class="num">02</span><h4>Game Tracking</h4><p>Create games with opponent, date, location, and score. View your full schedule organized by season.</p></div>
+    <div class="fcell"><span class="num">03</span><h4>Roster Management</h4><p>Player profiles with photos, numbers, nicknames, preferred positions, and contact info. Players can be shared across teams.</p></div>
+    <div class="fcell"><span class="num">04</span><h4>Walkup Music</h4><p>Set walkup songs for each player. Play them live during games with the built-in music player and Apple Music integration.</p></div>
+    <div class="fcell"><span class="num">05</span><h4>Opponent Scouting</h4><p>Track head-to-head records and history against every opponent. See your win/loss breakdown at a glance.</p></div>
+    <div class="fcell"><span class="num">06</span><h4>Season &amp; Calendar Sync</h4><p>Organize games by season and sync your schedule to your device calendar. Never miss a game.</p></div>
+    <div class="fcell"><span class="num">07</span><h4>Multiple Teams</h4><p>Manage multiple teams from one app. Each team has its own roster, games, seasons, and settings.</p></div>
+    <div class="fcell"><span class="num">08</span><h4>iCloud Sync</h4><p>Your data syncs seamlessly across all your devices via iCloud. Your lineup is always up to date.</p></div>
+    <div class="fcell"><span class="num">09</span><h4>Baseball &amp; Softball Ready</h4><p>Built for both baseball and softball with support for a customizable 10th fielder position, so your lineup fits your league's rules.</p></div>
+  </div>
+</div>
+
+<section class="poster">
+  <div class="wrap inner">
+    <div>
+    <span class="kick" style="color:rgba(243,242,242,0.8)">Free on the App Store</span>
+    <h2>Take the field with confidence.</h2>
+    <p>Download Lineup Manager+ and have your lineup ready before the first pitch.</p>
+    <a class="btn btn-invert" href="https://apps.apple.com/us/app/lineup-manager/id6756772113">Download on the App Store</a>
+    </div>
+    <img class="poster-icon" src="assets/icon/app-icon.png" alt="Lineup Manager+ app icon">
+  </div>
 </section>
+
+</main>
 
 <footer>
-    <div class="footer-inner">
-        <p>&copy; 2025 Bob Morse. All rights reserved.</p>
-        <div class="footer-links">
-            <a href="/privacy">Privacy Policy</a>
-            <a href="/support">Support</a>
-            <a href="mailto:support@lineupmanager.plus">Contact</a>
-        </div>
+  <div class="wrap foot">
+    <p>&copy; 2026 Bob Morse. All rights reserved.</p>
+    <div class="footlinks">
+      <a href="/privacy">Privacy Policy</a>
+      <a href="/support">Support</a>
+      <a href="mailto:support@lineupmanager.plus">Contact</a>
     </div>
+  </div>
 </footer>
-
-<script>
-    const carousel = document.getElementById('carousel');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-
-    function getScrollAmount() {
-        const item = carousel.querySelector('.carousel-item');
-        return item ? item.offsetWidth + 24 : 364;
-    }
-
-    prevBtn.addEventListener('click', () => {
-        carousel.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
-    });
-
-    nextBtn.addEventListener('click', () => {
-        carousel.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
-    });
-</script>
 
 </body>
 </html>
